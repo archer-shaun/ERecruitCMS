@@ -1,2 +1,2 @@
-# ERecruitrecruit
-For ERcruitment project
+# ERecruitCMS
+For ERecruitment CMS
