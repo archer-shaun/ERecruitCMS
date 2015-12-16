@@ -1,0 +1,191 @@
+ @charset "utf-8";
+/***login***/
+.label{
+	left:-230px;
+}
+.table{
+	position: relative;
+}
+.table .add{
+	display: block;
+	position: absolute;
+	width:184px;
+	height: 36px;
+	background: url(../images/add_bg.png) center center no-repeat;
+	left:10px;
+	top: 0;
+}
+.table .result{
+	position: absolute;
+	right:10px;
+	top: 0;	
+	text-align: right;
+	font-size: 12px;
+	line-height: 36px;
+	font-weight: bold;
+}
+.table_list,
+.table_list li{
+	width: 100%;
+	position: relative;
+}
+.table_list li{
+	margin-bottom: 2px;
+}
+.table_list li.title{
+	text-align: center;
+}
+.table_list li p{
+	width:35%;
+	*width:34.5%;
+	border-right: 2px solid #fff;
+	position: relative;
+	text-align: center;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;	
+	-ms-box-sizing:border-box;
+	box-sizing:border-box;
+	white-space: nowrap;
+	float: left;
+}
+.table_list li p.column1 i{
+	display: block;
+	position: absolute;
+	width:30px;
+	height: 100%;
+	right:0;
+	top: 0;
+	z-index: 11;
+	background: #fff;
+}
+.table_list li p.column2{
+	width:20%;
+}
+.table_list li p.column4{
+	width:10%;
+	padding-right: 0;
+}
+.table_list li.title p.column2{
+	text-align: center;
+}
+.table_list li p span{
+	display: block;
+	height: 20px;
+	line-height: 20px;
+	padding:15px 30px 15px 30px;
+	text-align: left;
+	border-left: 2px solid #e9e9e9;
+	border-bottom: 2px solid #e9e9e9;
+	overflow: hidden;
+}
+.table_list li p img{
+	display: inline-block;
+	width: auto;
+	height: 20px;
+	margin-right: 10px;
+}
+.table_list li.odd p,
+.table_list li.odd p i{
+	background: #f4f4f4;
+}
+.table_list li.title p span{
+	background: #3890bc;
+	color:#fff;
+	font-weight: bold;
+	text-align: center;
+	height: 55px;
+	line-height: 55px;
+	overflow: hidden;
+	border-left-color: #3890bc;
+	border-bottom-color: #3890bc;	
+}
+.table_list li p a.edit{
+	width:20px;
+	height: 20px;
+	position: absolute;
+	left:50%;
+	margin-left: -20px;
+	top:50%;
+	margin-top: -12px;
+	background: url(../images/edit.png) center center no-repeat;
+}
+.table_list li p a.delete{
+	width:20px;
+	height: 20px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -12px;
+	background-image: url(../images/delete.png);
+	margin-left: 2px;
+}
+.table_list li p a.next{
+	width:20px;
+	height: 20px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -12px;
+	background-image: url(../images/next.png);
+	margin-left: -42px;
+}
+.control{
+	text-align: center;
+	margin-top: 60px;
+	position: relative;
+}
+.file-icon img{
+	width:20px;
+	height:20px;
+}
+.control a,
+.control span{
+	display: inline-block;
+	width:auto;
+	padding:0 10px 0 10px;
+	line-height: 30px;
+	background: #3890bc;
+	color:#fff; 
+	margin-left: 5px;
+}
+.control span{
+	color: #000;
+	background: none;
+}
+.control i{
+	font-weight: bold;
+	font-style: normal;
+}
+.control .bar{
+	position: absolute;
+	left:50%;
+	top:-40px;
+	margin-left: -122px;
+	display: none;
+}
+.control .bar.show{
+	display: block;
+}
+.control span.input_border{
+	width:100px;
+	border:1px solid #e9e9e9;
+	height: 30px;
+	line-height: 30px;
+}
+.control span.input_border input{
+	width: 100%;
+}
+.control span.submit_border{
+	width:60px;
+	background: #3890bc;
+	color:#fff;
+	position: relative;
+}
+.control span.submit_border input{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	opacity: 0;
+}

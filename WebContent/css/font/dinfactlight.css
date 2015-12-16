@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'DINFactLightRegular';
+    src: url('dinfactlight.eot');
+    src: url('dinfactlight.eot') format('embedded-opentype'),
+         url('dinfactlight.woff') format('woff'),
+         url('dinfactlight.ttf') format('truetype'),
+         url('dinfactlight.svg#DINFactLightRegular') format('svg');
+}

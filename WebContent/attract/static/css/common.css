@@ -1,0 +1,111 @@
+ @charset "utf-8";
+/*reset*/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,input,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;-webkit-background-origin:content-box;background-origin:content-box;}section,header,footer,nav{display:block;margin:0;padding:0}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}img{border:0;font-size:0}a{text-decoration:none;}
+.cf:before,.cf:after{content:"";display:table}.cf:after{clear:both}.cf{*zoom:1}
+/**body**/
+html,body{
+	width:100%;
+	margin:0 auto;
+	position: relative;
+    font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",arial,Helvetica,sans-serif;
+}
+input,textarea{
+    font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",arial,Helvetica,sans-serif;
+}
+body{
+	width:100%;
+}
+.header{
+	height: 80px;
+	padding-top: 15px;
+	background: #d11748;
+	width: 100%;
+	position: relative;
+}
+.header .logo{
+	width:auto;
+	height:64px;
+	display: block;
+	position: absolute;
+	left: 160px;
+	top: 15px;
+}
+.header div{
+	font-size: 14px;
+	line-height: 16px;
+	color:#fff;
+	font-weight: bold;
+	padding: 15px 0 0 325px;
+
+}
+.nav{
+	width: 100%;
+	color: #fff;
+	font-weight: bold;
+	background: #a1052e;
+	position: relative;
+	font-size: 14px;
+}
+.nav a{
+	color:#fff;
+}
+.menu_btn,.sign_out_btn{
+	display: block;
+	width:80px;
+	line-height: 42px;
+}
+.menu_btn,.add_btn{
+	display: block;
+	width:80px;
+	line-height: 42px;
+}
+.menu_btn{
+	padding-left: 20px;
+	background: url(../images/menu_btn.png) right center no-repeat;
+}
+.sign_out_btn{
+	width: 215px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-align: center;
+}
+.add_btn{
+	width: 100px;
+	position: absolute;
+	right: 215px;
+	top: 0;
+	text-align: center;
+}
+.menu{
+	display: none;
+}
+.menu .list_column{
+	width: 16.26%;
+	float: left;
+}
+.menu .list_column.list1{
+	width: 25%;
+	padding-left: 80px;
+}
+.menu .list_column li{
+	height: 36px;
+	line-height: 36px;
+}
+.page_title{
+	width: 100%;
+	font-size: 24px;
+	line-height: 60px;
+	text-align: center;
+	color:#fff;
+	background-color: #d11748;
+}
+
+@media screen and (max-width:1100px){
+	.menu .list_column.list1{
+		width: 28%;
+	}
+}
+.italic{
+	font-style: italic;
+}

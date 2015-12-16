@@ -1,0 +1,89 @@
+ @charset "utf-8";
+/***login***/
+.form{
+		padding-top: 20px;
+}
+.input_box{
+	width: 230px;
+	position: relative;
+	font-size: 14px;
+	line-height: 40px;
+	margin:0 auto 15px auto;
+}
+.label{
+	display: block;
+	position: absolute;
+	left:-150px;
+	top:0;
+	line-height: 42px;
+}
+.input_border{
+	position: relative;
+	padding-left: 15px;
+	background: #f8f8f8;
+	border:1px solid #cccccc;
+	border-radius: 4px;
+	-webkit-border-radius:4px;
+	height: 40px;
+}
+.input_border input{
+	width: 100%;
+}
+.input_border .input_txt{
+	width:100%;
+	height: 100%;
+	display: block;
+	position: relative;
+	z-index: 1;
+}
+.input_border select{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 11;
+	opacity: 0;
+	filter:alpha(opacity=0);
+}
+.input_border select option{
+	font-size: 14px;
+	line-height: 40px;
+	padding-left: 15px;
+}
+.input_border.select_border{
+	background: url(../images/select_btn.png) right center no-repeat;
+	background-color: #f8f8f8;
+}
+.btn_box .input_border{
+	width:92px;
+	padding:0;
+	float: left;
+	margin-right:15px;
+	height: 40px;
+	border:none;
+	border-radius: 0;
+	-webkit-border-radius:0;
+}
+.btn_box .input_border.search_border{
+	background: url(../images/search_bg.png) center center no-repeat;
+	background-color: #d11748;
+}
+.btn_box .input_border.search_border.search_border2{
+	background-image: url(../images/search_bg2.png);
+}
+.btn_box .input_border.submit_border{
+	background: url(../images/submit_bg.png) center center no-repeat;
+	background-color: #d11748;
+}
+.btn_box .input_border.clear_border{
+	background: url(../images/clear_bg.png) center center no-repeat;
+	background-color: #d11748;
+}
+.btn_box .input_border input{
+	width: 100%;
+	height: 100%;
+	display: block;
+	opacity: 0;
+	filter:alpha(opacity=0);
+}
