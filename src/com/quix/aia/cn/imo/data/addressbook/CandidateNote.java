@@ -46,7 +46,7 @@ public class CandidateNote implements Serializable  {
 	private Boolean activityStatus;
 	private Boolean isDelete;
 	private Boolean status;
-	
+	private Boolean isSystem;
 
 	/**
 	 * <p>
@@ -64,6 +64,7 @@ public class CandidateNote implements Serializable  {
 		activityStatus = null;
 		isDelete = null;
 		status = true;
+		status = false;
 	}
 
 	/**
@@ -198,6 +199,20 @@ public class CandidateNote implements Serializable  {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+	
+	/**
+	 * @return the isSystem
+	 */
+	public Boolean getIsSystem() {
+		return isSystem;
+	}
+
+	/**
+	 * @param isSystem the isSystem to set
+	 */
+	public void setIsSystem(Boolean isSystem) {
+		this.isSystem = isSystem;
+	}
 
 	/**
 	 * <p>
@@ -214,6 +229,7 @@ public class CandidateNote implements Serializable  {
 		activityStatus = null;
 		isDelete = null;
 		status = null;
+		isSystem = null;
 	}
 
 }

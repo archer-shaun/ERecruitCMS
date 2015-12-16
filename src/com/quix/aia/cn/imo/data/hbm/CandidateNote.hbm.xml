@@ -32,5 +32,9 @@
         <property  name="status" type="java.lang.Boolean">
             <column name="STATUS"  />
         </property>
+        
+        <property  name="isSystem" type="java.lang.Boolean">
+            <column name="IS_SYSTEM"  />
+        </property>
     </class>
 </hibernate-mapping>

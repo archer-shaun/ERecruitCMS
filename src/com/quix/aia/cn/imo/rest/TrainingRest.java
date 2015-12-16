@@ -58,6 +58,7 @@ import com.quix.aia.cn.imo.data.addressbook.CandidateTrainingResult;
 import com.quix.aia.cn.imo.data.auditTrail.AuditTrail;
 import com.quix.aia.cn.imo.mapper.AddressBookMaintenance;
 import com.quix.aia.cn.imo.mapper.AuditTrailMaintenance;
+import com.quix.aia.cn.imo.mapper.CandidateNoteMaintenance;
 import com.quix.aia.cn.imo.mapper.CandidateTrainingDetailMaintenance;
 import com.quix.aia.cn.imo.mapper.CandidateTrainingResultMaintenance;
 import com.quix.aia.cn.imo.mapper.LogsMaintenance;
@@ -248,8 +249,9 @@ public class TrainingRest {
 			Object[] updateFieldValue = {"7/9",new Date(),agentId};
 			String[] conditionFieldName={"iosAddressCode","agentId"};
 			String[] conditionFieldValue={candidateCode,agentId};
-			
 			addressBookMaintenance.updateAddressBookSelectedField(updateFieldName, updateFieldValue, conditionFieldName, conditionFieldValue);
+			
+			new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidateCode), "ALE Exam", "ALE Exam Results");
 			
 			// Convert the object to a JSON string
 			log.log(Level.INFO,"Training --> Information fetched successfully... ");
@@ -324,6 +326,24 @@ public class TrainingRest {
 				candidateTrainingResult.setTrainingResult("PASS");
 			}else{
 				candidateTrainingResult = new CandidateTrainingResult();
+			}
+			
+			AddressBookMaintenance addressBookMaintenance = new AddressBookMaintenance();
+			
+			String[] fetchFields={"addressCode","nric"};
+			String[] conditionFieldName={"nric", "agentId"};
+			String[] conditionFieldValue={nric ,recruiterAgentCode};
+			List<Object []> list = addressBookMaintenance.getAddressBookSelectedField(fetchFields, conditionFieldName, conditionFieldValue);
+			Object[] obj = null;
+			
+			if(null != list && !list.isEmpty()){
+				obj = (Object[]) list.get(0);
+				
+				Integer candidateCode = (Integer) obj[0];
+				String[] conditionFieldName1={"addressCode"};
+				String[] conditionFieldValue1={""+candidateCode};
+				addressBookMaintenance.updateAddressBookStatus("8/9", conditionFieldName1, conditionFieldValue1);
+				new CandidateNoteMaintenance().insertSystemNotes(candidateCode , "ABC Training", "ABC Training Results : "+candidateTrainingResult.getTrainingResult());
 			}
 			
 			// Convert the object to a JSON string
