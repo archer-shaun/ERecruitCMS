@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+.lightbox{
+	position:absolute;
+	top:1150px;
+	right:425px;
+	background:#ffffff;
+	-webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow:  0 0 10px 7px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow:  0 0 10px 7px rgba(0, 0, 0, 0.2);
+          box-shadow:0 0 10px 7px rgba(0, 0, 0, 0.2);
+		  width:415px;
+		  padding:20px;
+		  /*padding:15px*/
+		  display:none;
+		  z-index:70;
+}
+
+
+@media \0screen {  
+    .report_field{border:1px solid #A7A7A7;} 
+	.lightbox {border:1px solid #A7A7A7;} 
+	
+.report_field fieldset legend {margin-bottom:10px;}
+.report_field fieldset{margin-top:0; padding-top:0;} 
+.schedule_list .list:hover{	background:#fcf3f6;border:1px solid #A7A7A7;}
+}
+.clear{clear:both; display:block; visibility:hidden;}
+
+.btn_close{
+	background:url(../images/sprite.png) no-repeat -3px -125px;
+	width:32px;
+	height:32px;
+	position:absolute;
+	top:-30px;
+	right:-15px;
+}
+
+
+.lightbox h3{
+	color:#ad0d36;
+	font-weight:normal;
+}
+
+.lightbox .heading{
+	color:#ad0d36;
+	font-size:12px;
+	margin-bottom:10px;
+}
+
+.lightbox select.cls_name {
+    min-width: 415px;
+}
+
+.lightbox .tabs.ui-tabs{
+	border:none;
+	padding:0;
+	margin:0 -20px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav{
+	background: none repeat scroll 0 0 transparent;
+    border:none;
+	border-bottom:1px solid #b1a9aa;
+    padding: 0 20px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .ui-tabs-active{
+	-webkit-box-shadow:  0 -1px 2px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow:  0 -1px 2px rgba(0, 0, 0, 0.2);
+          box-shadow:0 -1px 2px rgba(0, 0, 0, 0.2);
+		  }
+		  
+.lightbox label{
+	color:#959595;
+	font-size:11px;
+	display:block;
+}
+
+.lightbox textarea{
+	color:#959595;
+	font-size:11px;
+	padding:10px;
+	width:395px;
+	background:none;
+	display:block;
+	-webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+		  margin:10px 0 20px 0;
+}
+
+.lightbox .report_field_btn{
+	background:none;
+}
+
+.lightbox .report_field_btn a.btn {
+	color:#ffffff;
+	padding:8px 20px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav li{
+	margin-right:5px
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .tab1{
+	background:url(../images/sprite.png) no-repeat 0 -189px;
+	height: 20px;
+    margin: 5px 15px;
+    padding: 0;
+    width: 24px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .tab2{
+	background:url(../images/sprite.png) no-repeat -36px -189px;
+	height: 20px;
+    margin: 5px 15px;
+    padding: 0;
+    width: 24px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .tab3{
+	background:url(../images/sprite.png) no-repeat -36px -189px;
+	height: 20px;
+    margin: 5px 15px;
+    padding: 0;
+    width: 24px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .ui-tabs-active .tab1{
+	background:url(../images/sprite.png) no-repeat 0 -163px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .ui-tabs-active .tab2{
+	background:url(../images/sprite.png) no-repeat -36px -163px;
+}
+
+.lightbox .tabs.ui-tabs .ui-tabs-nav .ui-tabs-active .tab3{
+	background:url(../images/sprite.png) no-repeat -36px -163px;
+}
+	

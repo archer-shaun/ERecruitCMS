@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'DINFactBoldRegular';
+    src: url('font/dinfactbold.eot');
+    src: url('font/dinfactbold.eot') format('embedded-opentype'),
+         url('font/dinfactbold.woff') format('woff'),
+         url('font/dinfactbold.ttf') format('truetype'),
+         url('font/dinfactbold.svg#DINFactBoldRegular') format('svg');
+}
+
+
+@font-face {
+    font-family: 'DINFactLightRegular';
+    src: url('font/dinfactlight.eot');
+    src: url('font/dinfactlight.eot') format('embedded-opentype'),
+         url('font/dinfactlight.woff') format('woff'),
+         url('font/dinfactlight.ttf') format('truetype'),
+         url('font/dinfactlight.svg#DINFactLightRegular') format('svg');
+}
+
+
+@font-face {
+    font-family: 'DINFactRegularRegular';
+    src: url('font/dinfactreg.eot');
+    src: url('font/dinfactreg.eot') format('embedded-opentype'),
+         url('font/dinfactreg.woff') format('woff'),
+         url('font/dinfactreg.ttf') format('truetype'),
+         url('font/dinfactreg.svg#DINFactRegularRegular') format('svg');
+}
+
+
+@font-face {
+    font-family: 'DINProBlack';
+    src: url('font/dinpro-black.eot');
+    src: url('font/dinpro-black.eot') format('embedded-opentype'),
+         url('font/dinpro-black.woff') format('woff'),
+         url('font/dinpro-black.ttf') format('truetype'),
+         url('font/dinpro-black.svg#DINProBlack') format('svg');
+}
+
+		.content_view_popup { position:relative; display:table; width:100%;}			
+			.content_view_popup:last-child { border:0; padding:0;}
+		.content_view_popup_exam { position:relative; display:table; width:100%;}			
+			.content_view_popup_exam:last-child { border:0; padding:0;}
+		.content_view_popup_event { position:relative; display:table; width:100%;}			
+			.content_view_popup_event:last-child { border:0; padding:0; }
+		.content_view_popup_faculty { position:relative; display:table; width:100%;}			
+			.content_view_popup_faculty:last-child { border:0; padding:0;}
+			.content_view_popup1 { border:1px solid #ddd; border-radius:2px; width:97%; height:150px; padding:3px; }
+			.content_view_popup2 { border:1px solid #ddd; border-radius:2px; width:20%; height:150px; padding:3px; }
+			.content_view_popup3 { border:1px solid #ddd; border-radius:2px; width:97%; height:300px; padding:3px; }
+.title_contactlist { margin-left:60px; }
+.alphabet_list { padding-bottom:5px; border-bottom:1px solid #f6f6f6; display:table; width:100%; position:relative; margin-bottom:10px; }
+	.characters { position:relative; display:block; margin:0 auto; width:82%; border:0px solid red; }
+		.char, .dot { position:relative; float:left; }
+		.char { font-size:15px; color:#d82253; border:0px solid red; padding-left:10px;padding-right:10px; text-align:center; }
+		.char.active, .char:hover { font-weight:bold; }
+		.char:hover  { cursor:pointer; } 
+		.dot { margin:13px 3px 0 3px; color:#ebebeb }
+	.content_view_box, .content_view_box:last-child { height:373px; padding:0; border:1px solid #ddd; }
+	.contactlist_popup { position:relative; display:block; overflow-y:auto; height:150px; border:0px solid red; }
+	.contactlist_popup_exam { position:relative; display:block; overflow-y:auto; height:150px; border:0px solid red; }
+	.contactlist_popup_event { position:relative; display:block; overflow-y:auto; height:150px; border:0px solid red; }
+	.contactlist_popup_faculty { position:relative; display:block; overflow-y:auto; height:300px; border:0px solid red; }
+		.coursewrap { position:relative; display:table; width:100%; }
+		.coursewrapExam { position:relative; display:table; width:100%; }
+		.coursewrapEvent { position:relative; display:table; width:100%; }
+		.coursewrapFaculty { position:relative; display:table; width:100%; }
+		.name_title { position:relative; display:table; background:#0d7aff; font-weight:bold; width:100%; color:#fff; margin:8px 0; }
+		.text { font-size:15px; padding:10px 0 10px 10px;color:#545454;font-family: 'DINFactRegularRegular'; }
+		.listname:hover { background:#DFDFDF; cursor:pointer; }
+		.listname.active { background:#DFDFDF; }
+		.listname_exam:hover { background:#DFDFDF; cursor:pointer; }
+		.listname_exam.active { background:#DFDFDF; }
+		.listname_event:hover { background:#DFDFDF; cursor:pointer; }
+		.listname_event.active { background:#DFDFDF; }
+		.listname_faculty:hover { background:#DFDFDF; cursor:pointer; }
+		.listname_faculty.active { background:#DFDFDF; }
+	.profile_top { position:relative; display:table; padding:20px; }
+		.personal { width:280px; border:0px solid red; margin:0 10px 0 0; height:150px; }
+		
+		.photowrap { border:0px solid red;  height:150px; }
+			.photo {  border:1px solid #ccc; width:150px; height:150px; }
+			
+	.profile_mid { position:relative; display:table; padding:0 20px ; }
+	.profile_edit { position:absolute; bottom:0; color:#0d7aff }
+	.profile_bod, .profile_gender, .profile_name { color:#d82253; }
+	.contact_work, .contact_home, .contact_mobile, .email, .email_company, .address, .profile_label { color:#707070;  font-size:15px; }
+	.profile_name { font-size:25px; font-weight:bold; }
+	.profile_label { font-weight:bold; font-size:15px; }

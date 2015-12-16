@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  
+<ehcache>  
+ <defaultCache maxElementsInMemory="1000000" eternal="true"  />
+
+<cache name="com.quix.aia.cn.imo.data.holiday.Holiday"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.egreeting.E_Greeting"   
+maxElementsInMemory="1000000" eternal="true"   />
+ 
+ <cache name="com.quix.aia.cn.imo.data.interview.Interview"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.presenter.Presenter"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.announcement.Announcement"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.event.Event"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+
+<cache name="com.quix.aia.cn.imo.data.bu.Bu"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+
+<cache name="com.quix.aia.cn.imo.data.district.District"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+
+<cache name="com.quix.aia.cn.imo.data.city.City"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+
+<cache name="com.quix.aia.cn.imo.data.ssc.Ssc"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.channel.Channel"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.department.Department"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.branch.Branch"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+<cache name="com.quix.aia.cn.imo.data.office.Office"   
+maxElementsInMemory="1000000" eternal="true"   />
+
+
+</ehcache>  

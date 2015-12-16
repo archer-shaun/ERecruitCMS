@@ -1,0 +1,3 @@
+EOP  Registration
+-----------------
+1.Can we register/update candidate for past schedules ?

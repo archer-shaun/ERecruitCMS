@@ -1,0 +1,49 @@
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "http://directwebremoting.org/schema/dwr20.dtd">
+<dwr>
+ 
+	  <allow>
+		  
+		    <create creator="new" javascript="ImoUtilityData">
+		      <param name="class" value="com.quix.aia.cn.imo.utilities.ImoUtilityData"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.utilities.ImoUtilityData"/>
+		     <!-- presenter	  -->
+		     <create creator="new" javascript="Presenter">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.PresenterMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.presenter.presenter"/>
+		     
+		     <create creator="new" javascript="UserManagement">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.UserMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.user.User"/>
+		     <!-- goal maint -->
+		     <!-- presenter	  -->
+		     <create creator="new" javascript="Individual_Goal">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.GoalMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.goalsetting.Individual_Goal"/>	
+		     
+		    <create creator="new" javascript="GoalConfig">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.GoalConfigMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.goalsetting.GoalConfig"/>	
+		     
+		     <create creator="new" javascript="InterviewAttendance">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.InterviewAttendanceMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.interview.Interview"/>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.interview.InterviewCandidate"/>
+			 <convert converter="bean" match="com.quix.aia.cn.imo.data.interview.InterviewCandidateMaterial"/>		     
+			 
+			<create creator="new" javascript="AamData">
+		      <param name="class" value="com.quix.aia.cn.imo.mapper.AamDataMaintenance"/>
+		    </create>
+		     <convert converter="bean" match="com.quix.aia.cn.imo.data.common.AamData"/>
+		     
+	</allow>
+		   
+  
+</dwr>

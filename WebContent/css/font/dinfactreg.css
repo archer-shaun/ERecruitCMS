@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'DINFactRegularRegular';
+    src: url('dinfactreg.eot');
+    src: url('dinfactreg.eot') format('embedded-opentype'),
+         url('dinfactreg.woff') format('woff'),
+         url('dinfactreg.ttf') format('truetype'),
+         url('dinfactreg.svg#DINFactRegularRegular') format('svg');
+}
