@@ -65,8 +65,8 @@ import com.quix.aia.cn.imo.data.event.EventMaterial;
 import com.quix.aia.cn.imo.mapper.AamDataMaintenance;
 import com.quix.aia.cn.imo.mapper.AddressBookMaintenance;
 import com.quix.aia.cn.imo.mapper.AuditTrailMaintenance;
+import com.quix.aia.cn.imo.mapper.CandidateNoteMaintenance;
 import com.quix.aia.cn.imo.mapper.EopAttendanceMaintenance;
-
 import com.quix.aia.cn.imo.mapper.EopMaintenance;
 import com.quix.aia.cn.imo.mapper.LogsMaintenance;
 import com.quix.aia.cn.imo.utilities.EmailNotification;
@@ -282,6 +282,11 @@ public class EventRest {
 	        	candidate = (EventCandidate) itr.next();
 			    objMaintenance.candidateAttendanceRest(candidate);
 	        }
+	        
+	        String conditionFieldName[]={"addressCode"};
+	        String conditionFieldValue[]={candidate.getEventCandidateCode()};
+	        new AddressBookMaintenance().updateAddressBookStatus("4/9", conditionFieldName, conditionFieldValue);
+	        new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidate.getEventCandidateCode()), "EOP Attend", "Candidate Attended in EOP");
 		    
 		    status=true;
 	        auditTrailMaint.insertAuditTrail(new AuditTrail("Rest", AuditTrail.MODULE_EOP, AuditTrail.FUNCTION_REST, "SUCCESS"));
@@ -421,9 +426,11 @@ public class EventRest {
 		        if(emailAddrs!=null && emailAddrs.length()>0){
 		        	EmailNotification.sendEopRegEmailNotification(candidate,emailAddrs, aamData);
 		        }
+		        
 		        String conditionFieldName[]={"addressCode"};
 		        String conditionFieldValue[]={candidate.getEventCandidateCode()};
-		        new AddressBookMaintenance().updateAddressBookStatus("1/9", conditionFieldName, conditionFieldValue);
+		        new AddressBookMaintenance().updateAddressBookStatus("2/9", conditionFieldName, conditionFieldValue);
+		        new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidate.getEventCandidateCode()), "EOP Registration", "Candidate Registered in EOP");
 		        
 		        auditTrailMaint.insertAuditTrail(new AuditTrail("Rest", AuditTrail.MODULE_EOP, AuditTrail.FUNCTION_REST, "SUCCESS"));
 	        }else{

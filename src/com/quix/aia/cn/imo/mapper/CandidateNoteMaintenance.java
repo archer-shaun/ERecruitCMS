@@ -26,6 +26,8 @@ package com.quix.aia.cn.imo.mapper;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -45,6 +47,7 @@ import com.quix.aia.cn.imo.data.addressbook.CandidateNoteId;
 import com.quix.aia.cn.imo.data.auditTrail.AuditTrail;
 import com.quix.aia.cn.imo.data.user.User;
 import com.quix.aia.cn.imo.database.HibernateFactory;
+import com.quix.aia.cn.imo.utilities.LMSUtil;
 import com.quix.aia.cn.imo.utilities.MsgObject;
 
 /**
@@ -173,9 +176,14 @@ public class CandidateNoteMaintenance {
 	public Set<CandidateNote> readCandidateNotes(
 			Set<CandidateNote> list) {
 
-		for (CandidateNote candidateNote : list) {
+		for (Iterator itr = list.iterator();itr.hasNext();) {
+			CandidateNote candidateNote = (CandidateNote)itr.next();
 			candidateNote.setIosNoteCode(candidateNote.getNoteId().getIosNoteCode());
 			candidateNote.setNoteId(null);
+			
+			if(!candidateNote.getStatus()){
+				itr.remove();
+			}
 		}
 		return list;
 	}
@@ -322,9 +330,11 @@ public class CandidateNoteMaintenance {
 	 * @return void
 	 * 
 	 */
-	public void syncNotes(List<CandidateNote> candidateNoteList, HttpServletRequest requestParameters) {
+	public List syncNotes(List<CandidateNote> candidateNoteList, HttpServletRequest requestParameters) {
 		CandidateNote candidateNote=null;
+		CandidateNote candidateNote1=null;
 		CandidateNoteId candidateNoteId=null;
+		List list = new ArrayList();
 		
 		for(Iterator itr = candidateNoteList.iterator();itr.hasNext();){
 			candidateNote = (CandidateNote) itr.next();
@@ -332,14 +342,47 @@ public class CandidateNoteMaintenance {
 	        candidateNoteId.setAddressCode(candidateNote.getAddressCode());
 	        candidateNoteId.setIosNoteCode(candidateNote.getIosNoteCode());
 	        candidateNote.setNoteId(candidateNoteId);
+	        candidateNote.setIsSystem(false);
 	        
 	        if(candidateNote.getIsDelete()){
 	        	deleteNote(candidateNote);
 	        }else{
+	        	candidateNote.setStatus(true);
 	        	createNewCandidateNote(candidateNote, requestParameters);
 	        }
+	        
+	        candidateNote1 = new CandidateNote();
+	        candidateNote1.setIosNoteCode(candidateNote.getIosNoteCode());
+	        candidateNote1.setStatus(null);
+	        list.add(candidateNote1);
 		}
 		
+		return list;
+	}
+	
+	/**
+	 * <p>Insert candidate note</p>
+	 * @param candidate
+	 * @return
+	 */
+	public void insertSystemNotes(int addressCode, String activityType, String description)
+	{
+		CandidateNoteId candidateNoteId = new CandidateNoteId();
+		candidateNoteId.setAddressCode(addressCode);
+		candidateNoteId.setIosNoteCode(LMSUtil.getRendomToken());
+		
+		CandidateNote candidateNote = new CandidateNote();
+		candidateNote.setAddressCode(candidateNoteId.getAddressCode());
+		candidateNote.setIosNoteCode(candidateNoteId.getIosNoteCode());
+		candidateNote.setNoteId(candidateNoteId);
+		candidateNote.setActivityType(activityType);
+		candidateNote.setActivityDate(new Date());
+		candidateNote.setDescription(description);
+		candidateNote.setActivityStatus(true);
+		candidateNote.setStatus(true);
+		candidateNote.setIsSystem(true);
+		
+		insertNewCandidateNote(candidateNote);
 	}
 
 	public static final String Name = "name";

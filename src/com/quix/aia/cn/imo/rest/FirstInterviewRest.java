@@ -55,6 +55,7 @@ import com.quix.aia.cn.imo.data.auditTrail.AuditTrail;
 import com.quix.aia.cn.imo.mapper.AddressBookMaintenance;
 import com.quix.aia.cn.imo.mapper.AuditTrailMaintenance;
 import com.quix.aia.cn.imo.mapper.CandidateFirstInterviewMaintenance;
+import com.quix.aia.cn.imo.mapper.CandidateNoteMaintenance;
 import com.quix.aia.cn.imo.mapper.LogsMaintenance;
 import com.quix.aia.cn.imo.utilities.LMSUtil;
 
@@ -119,7 +120,8 @@ public class FirstInterviewRest {
 	        
 	        String conditionFieldName[]={"addressCode"};
 	        String conditionFieldValue[]={candidateFirstInterview.getCandidateCode()};
-	        new AddressBookMaintenance().updateAddressBookStatus("4/9", conditionFieldName, conditionFieldValue);
+	        new AddressBookMaintenance().updateAddressBookStatus("3/9", conditionFieldName, conditionFieldValue);
+	        new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidateFirstInterview.getCandidateCode()), "First Interview", "First Interview Results : "+candidateFirstInterview.getInterviewResult());
 			
 			log.log(Level.INFO,"First Interview --> Candidate First Interview Details Saved successfully... ");
 			status=true;
@@ -176,13 +178,17 @@ public class FirstInterviewRest {
 			
 			candidateFirstInterview = candidateFirstInterviewMaint.getCandidateFirstinterview(agentId, candidateCode);
 			
-			
 			candidateFirstInterview.setAgentId(null);
 			candidateFirstInterview.setCandidateCode(null);
 			candidateFirstInterview.setFirstInterviewCode(null);
 			//candidateFirstInterview.setRecruitmentPlan(null);
 			//candidateFirstInterview.setRemarks(null);
 			
+			AddressBookMaintenance addressBookMaintenance = new AddressBookMaintenance();
+			String[] conditionFieldName={"addressCode"};
+			String[] conditionFieldValue={candidateCode};
+			addressBookMaintenance.updateAddressBookStatus("7/9", conditionFieldName, conditionFieldValue);
+			new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidateCode), "ALE Exam", "ALE Exam Results : "+candidateFirstInterview.getInterviewResult());
 			
 			// Convert the object to a JSON string
 			log.log(Level.INFO,"First Interview --> Information fetched successfully... ");
@@ -201,8 +207,6 @@ public class FirstInterviewRest {
 			logsMain.insertLogs("FirstInterviewRest",Level.SEVERE+"",errors.toString());
 			
 			auditTrailMaint.insertAuditTrail(new AuditTrail("Rest",AuditTrail.MODULE_TRAINING, AuditTrail.FUNCTION_FAIL,"FAILED"));
-
-		
 			
 			return Response.status(500).entity(new Gson().toJson(beans)).build();
 		} finally {

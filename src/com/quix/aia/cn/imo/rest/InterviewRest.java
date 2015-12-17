@@ -63,6 +63,7 @@ import com.quix.aia.cn.imo.data.interview.InterviewMaterial;
 import com.quix.aia.cn.imo.mapper.AamDataMaintenance;
 import com.quix.aia.cn.imo.mapper.AddressBookMaintenance;
 import com.quix.aia.cn.imo.mapper.AuditTrailMaintenance;
+import com.quix.aia.cn.imo.mapper.CandidateNoteMaintenance;
 import com.quix.aia.cn.imo.mapper.InterviewAttendanceMaintenance;
 import com.quix.aia.cn.imo.mapper.InterviewMaintenance;
 import com.quix.aia.cn.imo.mapper.LogsMaintenance;
@@ -349,6 +350,7 @@ public class InterviewRest {
 		        String conditionFieldName[]={"addressCode"};
 		        String conditionFieldValue[]={candidate.getInterviewCandidateCode()};
 		        new AddressBookMaintenance().updateAddressBookStatus("2/9", conditionFieldName, conditionFieldValue);
+		        new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidate.getInterviewCandidateCode()), "Interview Registration", "Candidate Registered in Interview");
 		        
 		        List<InterviewCandidate> list1 = objMaintenance.getAttendanceList(request,candidate.getInterviewCode());
 		        registeredCount = list1.size();
