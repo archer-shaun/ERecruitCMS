@@ -84,6 +84,8 @@ public class AddressBookMaintenance {
 		Session session = null;
 		Transaction tx = null;
 		int key = 0;
+		int recordsToDelete = 0 ; 
+		List<AddressBook> deleteAddressBookList = new ArrayList<AddressBook>();
 
 		String returnJsonString = "";
 		String deleteString = "";
@@ -109,6 +111,8 @@ public class AddressBookMaintenance {
 					addressBook.setAddressCode(null);
 				}
 				if(addressBook.getDeleteStatus()){
+					recordsToDelete++;
+					deleteAddressBookList.add(addressBook);
 					addressBook = getAddressBook(addressBook);
 					addressBook.setDeleteStatus(true);
 					deleteString = ",\"deleteStatus\":"+addressBook.getDeleteStatus();
@@ -159,6 +163,16 @@ public class AddressBookMaintenance {
 			candidateWorkExperienceMaintenance = null;
 			candidateNoteMaintenance = null;
 		}
+		
+		if(recordsToDelete > 0){
+			EopAttendanceMaintenance eventCandidateMain = new EopAttendanceMaintenance();
+			InterviewAttendanceMaintenance interviewCandidateMain = new InterviewAttendanceMaintenance();
+			for (AddressBook addressBook : deleteAddressBookList) {
+				eventCandidateMain.updateRecordOnAddressBookDelete(addressBook.getAddressCode());
+				interviewCandidateMain.updateRecordOnAddressBookDelete(addressBook.getAddressCode());
+			}
+		}
+		
 		return returnJsonString;
 	}
 	

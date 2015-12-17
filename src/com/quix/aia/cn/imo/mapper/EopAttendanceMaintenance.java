@@ -36,7 +36,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -1255,6 +1254,48 @@ public class EopAttendanceMaintenance {
 				requestParameters.getSession().setAttribute("Event_OBJ", event);
 			return errorMsg;
 	 }
+	 
+	 /**
+		 * <p>update Records on Delete of AddressBook </p>
+		 * @param req   Servlet Request Parameter
+		 * @param candidateCode
+		 * @return void
+		 */
+		public void updateRecordOnAddressBookDelete(int candidateCode)
+		{
+			 Session session = null;
+			 Transaction tx= null;
+			 ArrayList<EventCandidate> attendanceList = new ArrayList<EventCandidate>();
+			try{
+				session = HibernateFactory.openSession();
+				Criteria crit = session.createCriteria(EventCandidate.class);
+				crit.add(Restrictions.eq("eventCandidateCode", ""+candidateCode));
+				attendanceList = (ArrayList)crit.list();
+				
+				tx = session.beginTransaction();
+				for(EventCandidate eventCandidate : attendanceList){
+					eventCandidate.setStatus(false);
+					session.update(eventCandidate);
+				}
+				tx.commit();
+				
+			}catch(Exception e)
+			{
+				log.log(Level.SEVERE, e.getMessage());
+				e.printStackTrace();LogsMaintenance logsMain=new LogsMaintenance();
+				StringWriter errors = new StringWriter();
+				e.printStackTrace(new PrintWriter(errors));
+				logsMain.insertLogs("EopAttendanceMaintenance",Level.SEVERE+"",errors.toString());
+			}finally{
+				try{
+					HibernateFactory.close(session);
+					
+				}catch(Exception e){
+					log.log(Level.SEVERE, e.getMessage());
+					e.printStackTrace();
+				}
+			}
+		}
 	
 	public static final String CANDIDATE_NAME = "candidateName";
 	public static final String SERVICING_AGENT = "servicingAgent";

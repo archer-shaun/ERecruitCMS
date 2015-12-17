@@ -257,7 +257,8 @@ public class AddressBookRest {
 	   		   String jsonString) {
 		log.log(Level.INFO, "Address Book --> syncNotes ");
 		log.log(Level.INFO,"Address Book --> syncNotes --> Data for Sync Notes...  ::::: "+jsonString);
-		String responseString = "[{\"status\":";
+//		String responseString = "[{\"status\":";
+		
 		MsgBeans beans = new MsgBeans();
 		AuditTrailMaintenance auditTrailMaint = new AuditTrailMaintenance();
 		Gson googleJson = null;
@@ -284,17 +285,13 @@ public class AddressBookRest {
 	        googleJson  = builder.create();
 	        Type listType = new TypeToken<List<CandidateNote>>(){}.getType();
 	        List<CandidateNote> jsonObjList = googleJson.fromJson(jsonString, listType);
-//	        candidateNote = jsonObjList.get(0);  
-//	        candidateNoteId.setAddressCode(candidateNote.getAddressCode());
-//	        candidateNoteId.setIosNoteCode(candidateNote.getIosNoteCode());
-//	        candidateNote.setNoteId(candidateNoteId);
 	        
-	        candidateNoteMaint.syncNotes(jsonObjList, request);
+	        List list = candidateNoteMaint.syncNotes(jsonObjList, request);
 	        
-//	        String msg = candidateNoteMaint.createNewCandidateNote(candidateNote,request);
-			
 			log.log(Level.INFO,"Address Book --> Candidate Notes Saved successfully... ");
-		    responseString +=true; 
+//		    responseString +=true;
+			
+			return Response.status(200).entity(googleJson.toJson(list)).build();
 		} catch (Exception e) {
 			e.printStackTrace();
 			beans.setCode("500");
@@ -309,7 +306,8 @@ public class AddressBookRest {
 			LogsMaintenance logsMain=new LogsMaintenance();
 			logsMain.insertLogs("AddressBookRest",Level.SEVERE+"",errors.toString());
 			
-		    responseString +=false; 
+//		    responseString +=false; 
+			return Response.status(500).entity("[{\"status\":\"false\"}]").build();
 		} finally {
 			builder = null;
 			googleJson = null;
@@ -321,8 +319,8 @@ public class AddressBookRest {
 			System.gc();
 		}
 		
-		responseString+="}]";
-		return Response.status(200).entity(responseString).build();
+//		responseString+="}]";
+	
 	}
 	
 	/**
@@ -513,13 +511,14 @@ public class AddressBookRest {
 			String[] conditionFieldName={"addressCode","agentId"};
 			String[] conditionFieldValue={candidateCode,agentId};
 			List<Object []> list = addressBookMaintenance.getAddressBookSelectedField(fetchFields, conditionFieldName, conditionFieldValue);
-			
-			addressBookMaintenance.updateAddressBookStatus("6/9", conditionFieldName, conditionFieldValue);
 			if(!list.isEmpty()){
 				Object[] obj = list.get(0);
 				addressBook.setCcTestResult(""+obj[0]);
 				addressBook.setCcTestResultDate((Date)obj[1]);
 			}
+			
+			addressBookMaintenance.updateAddressBookStatus("5/9", conditionFieldName, conditionFieldValue);
+			new CandidateNoteMaintenance().insertSystemNotes(Integer.parseInt(candidateCode), "CC Test", "CC Test Results : "+addressBook.getCcTestResult());
 			
 			jsonString+="[{\"CCTestResult\":\""+addressBook.getCcTestResult()+"\",\"Date\":\""+LMSUtil.convertDateToyyyymmddhhmmssDashedString(addressBook.getCcTestResultDate())+"\"}]";
 			// Convert the object to a JSON string

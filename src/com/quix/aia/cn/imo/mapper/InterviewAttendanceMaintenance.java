@@ -23,7 +23,6 @@
 ****************************************** *********************************** */
 package com.quix.aia.cn.imo.mapper;
 
-import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,15 +38,12 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
-import com.quix.aia.cn.imo.constants.ApplicationAttribute;
 import com.quix.aia.cn.imo.constants.SessionAttributes;
 import com.quix.aia.cn.imo.data.addressbook.AddressBook;
 import com.quix.aia.cn.imo.data.auditTrail.AuditTrail;
@@ -60,7 +55,6 @@ import com.quix.aia.cn.imo.data.locale.LocaleObject;
 import com.quix.aia.cn.imo.data.user.User;
 import com.quix.aia.cn.imo.database.HibernateFactory;
 import com.quix.aia.cn.imo.utilities.ExcelGenerator;
-import com.quix.aia.cn.imo.utilities.KeyObjPair;
 import com.quix.aia.cn.imo.utilities.MsgObject;
 import com.quix.aia.cn.imo.utilities.Pager;
 /**
@@ -904,6 +898,48 @@ public class InterviewAttendanceMaintenance {
 		return interviewCandidateCode;
 	}
 	
+	
+	 /**
+	 * <p>update Records on Delete of AddressBook </p>
+	 * @param req   Servlet Request Parameter
+	 * @param candidateCode
+	 * @return void
+	 */
+	public void updateRecordOnAddressBookDelete(int candidateCode)
+	{
+		 Session session = null;
+		 Transaction tx= null;
+		 ArrayList<InterviewCandidate> attendanceList = new ArrayList<InterviewCandidate>();
+		try{
+			session = HibernateFactory.openSession();
+			Criteria crit = session.createCriteria(InterviewCandidate.class);
+			crit.add(Restrictions.eq("interviewCandidateCode", ""+candidateCode));
+			attendanceList = (ArrayList)crit.list();
+			
+			tx = session.beginTransaction();
+			for(InterviewCandidate interviewCandidate : attendanceList){
+				interviewCandidate.setStatus(false);
+				session.update(interviewCandidate);
+			}
+			tx.commit();
+			
+		}catch(Exception e)
+		{
+			log.log(Level.SEVERE, e.getMessage());
+			e.printStackTrace();LogsMaintenance logsMain=new LogsMaintenance();
+			StringWriter errors = new StringWriter();
+			e.printStackTrace(new PrintWriter(errors));
+			logsMain.insertLogs("EopAttendanceMaintenance",Level.SEVERE+"",errors.toString());
+		}finally{
+			try{
+				HibernateFactory.close(session);
+				
+			}catch(Exception e){
+				log.log(Level.SEVERE, e.getMessage());
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
 	public static final String CANDIDATE_NAME = "candidateName";
